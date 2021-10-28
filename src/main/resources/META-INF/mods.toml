@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[37,)"
+license="MIT"
+#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
+[[mods]]
+modId="serverswitchy"
+version="${file.jarVersion}"
+displayName="Server Switchy"
+# A URL to query for updates for this mod. See the JSON update specification https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
+#updateJSONURL="https://change.me.example.invalid/updates.json" #optional
+# A URL for the "homepage" for this mod, displayed in the mod UI
+#displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
+authors="diesieben07"
+description='''
+Simple mod to allow server controlled connection to a new server
+'''
+[[dependencies.serverswitchy]]
+    modId="forge"
+    mandatory=true
+    versionRange="[37,)" #mandatory
+    ordering="NONE"
+    side="BOTH"

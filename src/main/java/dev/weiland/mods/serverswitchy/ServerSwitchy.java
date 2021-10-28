@@ -47,52 +47,6 @@ public class ServerSwitchy {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ServerSwitchyConfig.commonSpec);
     }
 
-    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = MOD_ID)
-    public static class ForgeEventListener {
-        @SubscribeEvent
-        public static void registerCommands(RegisterCommandsEvent event) {
-            if (ServerSwitchyConfig.COMMON.enableDebugCommand.get()) {
-                event.getDispatcher().register(
-                        Commands.literal("serverswitchy")
-                                .then(Commands.argument("target", players())
-                                        .then(Commands.argument("targetIp", string())
-                                                .then(Commands.argument("title", textComponent())
-                                                        .executes(cmd -> {
-                                                            var players = getPlayers(cmd, "target");
-                                                            var targetIp = getString(cmd, "targetIp");
-                                                            var title = getComponent(cmd, "title");
-                                                            return runDebugCommand(players, targetIp, title, false);
-                                                        })
-                                                        .then(Commands.argument("force_ask", bool()).executes(cmd -> {
-                                                            var players = getPlayers(cmd, "target");
-                                                            var targetIp = getString(cmd, "targetIp");
-                                                            var title = getComponent(cmd, "title");
-                                                            var forceAsk = getBool(cmd, "force_ask");
-                                                            return runDebugCommand(players, targetIp, title, forceAsk);
-                                                        })
-                                                        )
-                                                )
-                                        )
-                                )
-                );
-            }
-        }
-
-        private static int runDebugCommand(Collection<ServerPlayer> players, String targetIp, Component title, boolean forceAsk) {
-            var buf = new FriendlyByteBuf(Unpooled.buffer());
-            buf.writeUtf(targetIp);
-            buf.writeComponent(title);
-            buf.writeInt(forceAsk ? ServerSwitchy.FLAG_FORCE_CONFIRMATION : 0);
-
-            var packet = new ClientboundCustomPayloadPacket(CHANNEL_NAME, buf);
-            for (var player : players) {
-                player.connection.send(packet);
-            }
-
-            return players.size();
-        }
-    }
-
     @SubscribeEvent
     public static void clientInit(FMLClientSetupEvent event) {
         var channel = NetworkRegistry.newEventChannel(

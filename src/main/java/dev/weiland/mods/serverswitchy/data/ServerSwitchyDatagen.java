@@ -27,7 +27,7 @@ public class ServerSwitchyDatagen {
         @Override
         protected void addTranslations() {
             add(LanguageConstants.SCREEN_TITLE, "Switch to %s");
-            add(LanguageConstants.SWITCH_QUESTION, "The server suggests you switch servers to\n\n%s\n\nDo you want to switch?");
+            add(LanguageConstants.SWITCH_QUESTION, "The server suggests you switch servers to\n\n%s\n\nDo you want to connect to the server at the IP %s?");
             add(LanguageConstants.YES_DONT_ASK_AGAIN, "Yes and do not ask again");
         }
     }

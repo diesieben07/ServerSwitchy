@@ -1,5 +1,5 @@
 {
-  "serverswitchy.switch_question": "The server suggests you switch servers to\n\n%s\n\nDo you want to switch?",
+  "serverswitchy.switch_question": "The server suggests you switch servers to\n\n%s\n\nDo you want to connect to the server at the IP %s?",
   "serverswitchy.switch_to": "Switch to %s",
   "serverswitchy.yes_dont_ask_again": "Yes and do not ask again"
 }

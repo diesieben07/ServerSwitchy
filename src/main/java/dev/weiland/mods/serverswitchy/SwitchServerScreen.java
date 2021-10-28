@@ -1,13 +1,16 @@
 package dev.weiland.mods.serverswitchy;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.MultiLineLabel;
 import net.minecraft.client.gui.screens.ConnectScreen;
 import net.minecraft.client.gui.screens.ProgressScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.multiplayer.resolver.ServerAddress;
+import net.minecraft.gametest.framework.TestCommand;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 
 import javax.annotation.Nonnull;
@@ -31,7 +34,7 @@ public class SwitchServerScreen extends Screen {
         this.fromIp = fromIp;
         this.targetIp = targetIp;
 
-        this.question = new TranslatableComponent(LanguageConstants.SWITCH_QUESTION, targetName);
+        this.question = new TranslatableComponent(LanguageConstants.SWITCH_QUESTION, targetName, new TextComponent(targetIp).withStyle(ChatFormatting.GOLD));
         this.connectImmediately = connectImmediately;
     }
 
